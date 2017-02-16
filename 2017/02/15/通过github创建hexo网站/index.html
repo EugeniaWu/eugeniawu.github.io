@@ -23,7 +23,7 @@
 1$ mkdir myGitHub
 按照命令初始化，
 123456$ echo &quot;# eugeniawu.github.io&quot; &amp;gt;&amp;gt; README.md$ git init$ git add">
-<meta property="og:updated_time" content="2017-02-15T10:18:22.000Z">
+<meta property="og:updated_time" content="2017-02-16T07:09:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="通过hexo建立blog,并发布在github">
 <meta name="twitter:description" content="注册github
@@ -138,6 +138,19 @@
 <p>注意：<br>[remote rejected] HEAD -&gt; master (cannot lock ref ‘refs/heads/master’</p>
 <p>解决<br>fetch 改变的是 remotes 里面相应分支的 commit id。<br>git fetch 并没更改本地仓库的代码,git pull会更改,拉下来并merge</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git fetch</div></pre></td></tr></table></figure>
+<p>//使用duoshuo做评论<br>　注册多说帐号 <a href="http://duoshuo.com/" target="_blank" rel="external">http://duoshuo.com/</a> </p>
+<p>主题是landscape</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ vim themes/landscape/layout/_partial/article.ejs</div></pre></td></tr></table></figure>
+<p>找到下面代码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;% <span class="keyword">if</span> (!index &amp;&amp; post.comments &amp;&amp; config.disqus_shortname)&#123; %&gt;</div><div class="line"> &lt;section id=<span class="string">"comments"</span>&gt;</div><div class="line">   &lt;div id=<span class="string">"disqus_thread"</span>&gt;</div><div class="line">     &lt;noscript&gt;Please <span class="built_in">enable</span> JavaScript to view the &lt;a href=<span class="string">"//disqus.com/?ref_noscript"</span>&gt;comments powered by Disqus.&lt;/a&gt;&lt;/noscript&gt;</div><div class="line">   &lt;/div&gt;</div><div class="line"> &lt;/section&gt;</div><div class="line"> &lt;% &#125; %&gt;</div></pre></td></tr></table></figure>
+<p>替换成</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">&lt;% <span class="keyword">if</span> (!index &amp;&amp; post.comments &amp;&amp; config.duoshuo_shortname)&#123; %&gt;</div><div class="line">  &lt;section id=<span class="string">"comments"</span>&gt;</div><div class="line">    &lt;!-- 多说评论框 start --&gt;</div><div class="line">    &lt;div class=<span class="string">"ds-thread"</span> data-thread-key=<span class="string">"&lt;%= post.layout %&gt;-&lt;%= post.slug %&gt;"</span> data-title=<span class="string">"&lt;%= post.title %&gt;"</span> data-url=<span class="string">"&lt;%= page.permalink %&gt;"</span>&gt;&lt;/div&gt;</div><div class="line">    &lt;!-- 多说评论框 end --&gt;</div><div class="line">    &lt;!-- 多说公共JS代码 start (一个网页只需插入一次) --&gt;</div><div class="line">    &lt;script <span class="built_in">type</span>=<span class="string">"text/javascript"</span>&gt;</div><div class="line">    var duoshuoQuery = &#123;short_name:<span class="string">'&lt;%= config.duoshuo_shortname %&gt;'</span>&#125;;</div><div class="line">      (<span class="function"><span class="title">function</span></span>() &#123;</div><div class="line">        var ds = document.createElement(<span class="string">'script'</span>);</div><div class="line">        ds.type = <span class="string">'text/javascript'</span>;ds.async = <span class="literal">true</span>;</div><div class="line">        ds.src = (document.location.protocol == <span class="string">'https:'</span> ? <span class="string">'https:'</span> : <span class="string">'http:'</span>) + <span class="string">'//static.duoshuo.com/embed.js'</span>;</div><div class="line">        ds.charset = <span class="string">'UTF-8'</span>;</div><div class="line">        (document.getElementsByTagName(<span class="string">'head'</span>)[0] </div><div class="line">         || document.getElementsByTagName(<span class="string">'body'</span>)[0]).appendChild(ds);</div><div class="line">      &#125;)();</div><div class="line">      &lt;/script&gt;</div><div class="line">    &lt;!-- 多说公共JS代码 end --&gt;</div><div class="line">  &lt;/section&gt;</div><div class="line">  &lt;% &#125; %&gt;</div></pre></td></tr></table></figure>
+<p>到根目录myGithub</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ vim _config.yml</div></pre></td></tr></table></figure>
+<p>在文件底部新增</p>
+<p><code>duoshuo_shortname:  eugeniawu //刚刚注册duoshuo的域名</code> </p>
+<p>注意<br>Port 4000 has been used. Try other port instead.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ lsof -i:4000</div><div class="line">$ <span class="built_in">kill</span> -9 [PID]  //PID填入值</div></pre></td></tr></table></figure>
 <p></p><br><p></p><br><p></p> 
 
 
@@ -145,7 +158,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/02/15/通过github创建hexo网站/" data-id="ciz808e840001dlltfr6g3nfv" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/02/15/通过github创建hexo网站/" data-id="ciz87swu1000534ltsfe4jjmi" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技术/">技术</a></li></ul>
@@ -155,6 +168,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/2017/02/16/Node-js＋gulp-js构建前端自动化环境/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Node.js＋gulp.js构建前端自动化环境
+        
+      </div>
+    </a>
   
   
     <a href="/2017/02/14/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
@@ -167,7 +189,26 @@
   
 </article>
 
-
+  
+  <section id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="post-通过github创建hexo网站" data-title="通过hexo建立blog,并发布在github" data-url="http://yoursite.com/2017/02/15/通过github创建hexo网站/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'eugeniawu'};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+      </script>
+    <!-- 多说公共JS代码 end -->
+  </section>
+  
 
 </section>
         
@@ -210,6 +251,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2017/02/16/Node-js＋gulp-js构建前端自动化环境/">Node.js＋gulp.js构建前端自动化环境</a>
+          </li>
         
           <li>
             <a href="/2017/02/15/通过github创建hexo网站/">通过hexo建立blog,并发布在github</a>
