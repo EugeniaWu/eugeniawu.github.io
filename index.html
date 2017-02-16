@@ -43,6 +43,8 @@
         
           <a class="main-nav-link" href="/archives">文章</a>
         
+          <a class="main-nav-link" href="/aboutme">关于我</a>
+        
       </nav>
       <nav id="sub-nav">
         
@@ -85,13 +87,8 @@
 <p>本地本地新建项目路径</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ mkdir myGitHub</div></pre></td></tr></table></figure>
 <p>按照命令初始化，</p>
-<pre><code>echo &quot;# widgets&quot; &gt;&gt; README.md
-git init
-git add README.md
-git commit -m &quot;first commit&quot;
-git remote add origin git@github.com:EugeniaWu/eugeniawu.github.io.git
-git push -u origin master
-</code></pre><p>提示</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">echo</span> <span class="string">"# eugeniawu.github.io"</span> &gt;&gt; README.md</div><div class="line">$ git init</div><div class="line">$ git add README.md</div><div class="line">$ git commit -m <span class="string">"first commit"</span></div><div class="line">$ git remote add origin git@github.com:EugeniaWu/eugeniawu.github.io.git</div><div class="line">$ git push -u origin master</div></pre></td></tr></table></figure>
+<p>提示</p>
 <p>Permanently added the RSA host key for IP address ‘192.30.253.112’ to the list of known hosts.<br>Permission denied (publickey).</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo ssh-keygen -t rsa -C <span class="string">"xxx@xxx.com"</span>  //注册github邮箱</div></pre></td></tr></table></figure>
 <p>Enter passphrase (empty for no passphrase):    //输入密码</p>
@@ -110,18 +107,25 @@ git push -u origin master
 <p>配置发布github<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ vim _config.yml</div></pre></td></tr></table></figure></p>
 <p>//修改配置文件需要重新执行命令查看,下面是简写形式</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo s</div></pre></td></tr></table></figure>
+<p>增加评论功能</p>
 <p>将最底部的deploy配置修改：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">deploy:</div><div class="line">	<span class="built_in">type</span>: git</div><div class="line">	<span class="comment">#repo: https://github.com/EugeniaWu/eugeniawu.github.io.git</span></div><div class="line">	repo: https://[github账户名]:[密码]@github.com/EugeniaWu/eugeniawu.github.io.git</div><div class="line">	branch: master</div></pre></td></tr></table></figure>
 <p>然后执行命令</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install hexo-deployer-git --save</div></pre></td></tr></table></figure>
 <p>通过命令，将静态网页提交到github<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ hexo clean</div><div class="line">$ hexo generate</div><div class="line">$ hexo deploy <span class="comment">#部署到GitHub</span></div></pre></td></tr></table></figure></p>
-<h3 id="浏览器输入https-eugeniawu-github-io-即可打开web-1"><a href="#浏览器输入https-eugeniawu-github-io-即可打开web-1" class="headerlink" title="浏览器输入https://eugeniawu.github.io/  即可打开web"></a>浏览器输入<a href="https://eugeniawu.github.io/" target="_blank" rel="external">https://eugeniawu.github.io/</a>  即可打开web</h3><h2 id="一些常用命令："><a href="#一些常用命令：" class="headerlink" title="一些常用命令："></a>一些常用命令：</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"postName"</span> <span class="comment">#新建文章</span></div></pre></td></tr></table></figure>
+<h3 id="浏览器输入https-eugeniawu-github-io-即可打开web-1"><a href="#浏览器输入https-eugeniawu-github-io-即可打开web-1" class="headerlink" title="浏览器输入https://eugeniawu.github.io/  即可打开web"></a>浏览器输入<a href="https://eugeniawu.github.io/" target="_blank" rel="external">https://eugeniawu.github.io/</a>  即可打开web</h3><h2 id="一些常用命令："><a href="#一些常用命令：" class="headerlink" title="一些常用命令："></a>一些常用命令：</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"postName"</span> <span class="comment">#新建文章</span></div><div class="line">$ hexo new page <span class="string">"pageName"</span> <span class="comment">#新建页面</span></div></pre></td></tr></table></figure>
 <p>文章内容采用markdown格式。</p>
+<p>注意：<br>[remote rejected] HEAD -&gt; master (cannot lock ref ‘refs/heads/master’</p>
+<p>解决<br>fetch 改变的是 remotes 里面相应分支的 commit id。<br>git fetch 并没更改本地仓库的代码,git pull会更改,拉下来并merge</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git fetch</div></pre></td></tr></table></figure>
+<p></p><br><p></p><br><p></p> 
+
+
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/02/15/通过github创建hexo网站/" data-id="ciz6rh92z0000drltpi4k1ysw" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/02/15/通过github创建hexo网站/" data-id="ciz808e840001dlltfr6g3nfv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技术/">技术</a></li></ul>
@@ -130,6 +134,7 @@ git push -u origin master
   </div>
   
 </article>
+
 
 
   
@@ -168,13 +173,14 @@ git push -u origin master
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/02/14/hello-world/" data-id="ciz6rh9370001drlt1fs7x7xe" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/02/14/hello-world/" data-id="ciz808e7j0000dlltjbvivhuv" class="article-share-link">Share</a>
       
       
     </footer>
   </div>
   
 </article>
+
 
 
   
@@ -252,6 +258,8 @@ git push -u origin master
     <a href="/" class="mobile-nav-link">主页</a>
   
     <a href="/archives" class="mobile-nav-link">文章</a>
+  
+    <a href="/aboutme" class="mobile-nav-link">关于我</a>
   
 </nav>
     
