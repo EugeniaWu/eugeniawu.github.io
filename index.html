@@ -59,6 +59,61 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-对vuex的理解" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/14/对vuex的理解/" class="article-date">
+  <time datetime="2017-03-14T10:09:40.000Z" itemprop="datePublished">2017-03-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/14/对vuex的理解/">对vuex的理解</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Vuex是一个主要应用在中大型单页应用类似于Flux的数据管理架构。</p>
+<p>简单来说<br>数据管理</p>
+<p>vue每个组件间数据通信，常用概念通过data， 有父向子组件通信，prop。子向父组件emit一个事件。</p>
+<p>那各个子组件数据之间如何共享数据，进行通信。</p>
+<p>这时候可以用vuex。</p>
+<p>A子组件  与  B子组件  共享相同数据</p>
+<p>当从A子组件  改变了数据   B子组件也会产生改变</p>
+<p>Vuex  actions 分发。Mutations改变， store状态管理（store.js 里面的状态对象会包含所有应用级别的状态，也就是各个组件需要共享的状态。）</p>
+<p>A组件可以调动actions, 去分发要改变的数据， 然后store会改变状态， 反映到各个组件。</p>
+<p><img src="http://wx1.sinaimg.cn/mw690/a181e589gy1fdmj8okyi3j20m80hhab3.jpg" alt="vuex图"></p>
+<p>简单的例子</p>
+<p>三个组件</p>
+<p>A组件  增加按钮<br>B组件  减少按钮<br>C组件  文本框</p>
+<p>三个组件间共享数据count  当某个组件的操作改变  count会在所有组件中改变</p>
+<p><img src="http://wx1.sinaimg.cn/mw690/a181e589gy1fdmj8p4pz0j20lo0gq0tq.jpg" alt="图"></p>
+<p><a href="https://github.com/EugeniaWu/vuex-example" target="_blank" rel="external">源码查看</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/03/14/对vuex的理解/" data-id="cj09ekt5s0005riltdaqw0i7m" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技术/">技术</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+  
+
+  
     <article id="post-聊聊助我成长的团队" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/03/01/聊聊助我成长的团队/" class="article-date">
@@ -89,7 +144,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/03/01/聊聊助我成长的团队/" data-id="cizqrb7kw00016tlts7rfgzfn" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/03/01/聊聊助我成长的团队/" data-id="cj09ekt5v0006riltxdtf44y7" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/生活/">生活</a></li></ul>
@@ -201,7 +256,7 @@ gulp.task(&apos;default&apos;, function() {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/02/16/Node-js＋gulp-js构建前端自动化环境/" data-id="cizqrb7ks00006tlt36oojyp7" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/02/16/Node-js＋gulp-js构建前端自动化环境/" data-id="cj09ekt5f0000riltss28vbjz" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技术/">技术</a></li></ul>
@@ -293,7 +348,7 @@ gulp.task(&apos;default&apos;, function() {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/02/15/通过github创建hexo网站/" data-id="cizqrb7l200036tlt99y579px" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/02/15/通过github创建hexo网站/" data-id="cj09ekt5z0007rilt927zb4fk" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技术/">技术</a></li></ul>
@@ -341,7 +396,7 @@ gulp.task(&apos;default&apos;, function() {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/02/14/hello-world/" data-id="cizqrb7l300046tltvk4nm0c9" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/02/14/hello-world/" data-id="cj09ekt5l0002riltkmywiza8" class="article-share-link">Share</a>
       
       
     </footer>
@@ -394,6 +449,10 @@ gulp.task(&apos;default&apos;, function() {
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2017/03/14/对vuex的理解/">对vuex的理解</a>
+          </li>
         
           <li>
             <a href="/2017/03/01/聊聊助我成长的团队/">聊聊助我成长的团队</a>
