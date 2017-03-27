@@ -5,31 +5,37 @@
   
   <title>Node.js＋gulp.js构建前端自动化环境 | Eugenia的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="本地环境下，静态网站的构建自动化前阵子，帮别人做了个企业网站，纯展示作用。因为习惯了在终端vim下编辑，所以如果按一个页面一个页面的写，会把我累死。
-所以我想到了在本地构建关系，并通过gulp打包输出。
+  <meta name="description" content="本地环境下，静态网站的构建自动化vim编辑器工作以来使用了两年多，早已熟悉每一个命令。工作之余，打算在本地制作一个线下网站环境。所以我想到了在本地构建关系，并通过gulp打包输出。
 目录设计如下：
 整个过程是：安装nodejs，全局安装gulp，项目安装gulp以及gulp插件，配置gulpfile.js，运行任务全局安装gulp插件 
-$ npm install gulp">
+$ npm install gulp -g
+
+本地路径
+创建">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Node.js＋gulp.js构建前端自动化环境">
 <meta property="og:url" content="http://yoursite.com/2017/02/16/Node-js＋gulp-js构建前端自动化环境/index.html">
 <meta property="og:site_name" content="Eugenia的博客">
-<meta property="og:description" content="本地环境下，静态网站的构建自动化前阵子，帮别人做了个企业网站，纯展示作用。因为习惯了在终端vim下编辑，所以如果按一个页面一个页面的写，会把我累死。
-所以我想到了在本地构建关系，并通过gulp打包输出。
+<meta property="og:description" content="本地环境下，静态网站的构建自动化vim编辑器工作以来使用了两年多，早已熟悉每一个命令。工作之余，打算在本地制作一个线下网站环境。所以我想到了在本地构建关系，并通过gulp打包输出。
 目录设计如下：
 整个过程是：安装nodejs，全局安装gulp，项目安装gulp以及gulp插件，配置gulpfile.js，运行任务全局安装gulp插件 
-$ npm install gulp">
+$ npm install gulp -g
+
+本地路径
+创建">
 <meta property="og:image" content="http://wx1.sinaimg.cn/mw690/a181e589gy1fcsfzy5m55j20hw0dodgj.jpg">
 <meta property="og:image" content="http://wx3.sinaimg.cn/mw690/a181e589gy1fcsg4ok7rij20on0qn79s.jpg">
 <meta property="og:image" content="http://wx1.sinaimg.cn/mw690/a181e589gy1fcsg7b9v8pj20jr09kdgq.jpg">
-<meta property="og:updated_time" content="2017-02-16T10:14:42.000Z">
+<meta property="og:updated_time" content="2017-03-27T03:07:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Node.js＋gulp.js构建前端自动化环境">
-<meta name="twitter:description" content="本地环境下，静态网站的构建自动化前阵子，帮别人做了个企业网站，纯展示作用。因为习惯了在终端vim下编辑，所以如果按一个页面一个页面的写，会把我累死。
-所以我想到了在本地构建关系，并通过gulp打包输出。
+<meta name="twitter:description" content="本地环境下，静态网站的构建自动化vim编辑器工作以来使用了两年多，早已熟悉每一个命令。工作之余，打算在本地制作一个线下网站环境。所以我想到了在本地构建关系，并通过gulp打包输出。
 目录设计如下：
 整个过程是：安装nodejs，全局安装gulp，项目安装gulp以及gulp插件，配置gulpfile.js，运行任务全局安装gulp插件 
-$ npm install gulp">
+$ npm install gulp -g
+
+本地路径
+创建">
 <meta name="twitter:image" content="http://wx1.sinaimg.cn/mw690/a181e589gy1fcsfzy5m55j20hw0dodgj.jpg">
   
   
@@ -99,8 +105,7 @@ $ npm install gulp">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="本地环境下，静态网站的构建自动化"><a href="#本地环境下，静态网站的构建自动化" class="headerlink" title="本地环境下，静态网站的构建自动化"></a>本地环境下，静态网站的构建自动化</h2><p>前阵子，帮别人做了个企业网站，纯展示作用。因为习惯了在终端vim下编辑，所以如果按一个页面一个页面的写，会把我累死。</p>
-<p>所以我想到了在本地构建关系，并通过gulp打包输出。</p>
+        <h2 id="本地环境下，静态网站的构建自动化"><a href="#本地环境下，静态网站的构建自动化" class="headerlink" title="本地环境下，静态网站的构建自动化"></a>本地环境下，静态网站的构建自动化</h2><p>vim编辑器工作以来使用了两年多，早已熟悉每一个命令。工作之余，打算在本地制作一个线下网站环境。所以我想到了在本地构建关系，并通过gulp打包输出。</p>
 <p>目录设计如下：<br><img src="http://wx1.sinaimg.cn/mw690/a181e589gy1fcsfzy5m55j20hw0dodgj.jpg" alt="关系图"></p>
 <h2 id="整个过程是：安装nodejs，全局安装gulp，项目安装gulp以及gulp插件，配置gulpfile-js，运行任务"><a href="#整个过程是：安装nodejs，全局安装gulp，项目安装gulp以及gulp插件，配置gulpfile-js，运行任务" class="headerlink" title="整个过程是：安装nodejs，全局安装gulp，项目安装gulp以及gulp插件，配置gulpfile.js，运行任务"></a>整个过程是：安装nodejs，全局安装gulp，项目安装gulp以及gulp插件，配置gulpfile.js，运行任务</h2><p>全局安装gulp插件 </p>
 <pre><code class="bash">$ npm install gulp -g
@@ -176,7 +181,7 @@ gulp.task(&apos;default&apos;, function() {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/02/16/Node-js＋gulp-js构建前端自动化环境/" data-id="cj09ekt5f0000riltss28vbjz" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/02/16/Node-js＋gulp-js构建前端自动化环境/" data-id="cj0rjb0ta0001lbltr5e9i43u" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技术/">技术</a></li></ul>
