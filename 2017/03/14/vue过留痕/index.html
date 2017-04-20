@@ -15,7 +15,7 @@
 <meta property="og:description" content="简单的vue demo
 引入vue.js
 123456789101112&amp;lt;div id=&quot;app-2&quot;&amp;gt;  &amp;lt;span v-bind:title=&quot;message&quot;&amp;gt;    鼠标悬停几秒钟查看此处动态绑定的提示信息！  &amp;lt;/span&amp;gt;&amp;lt;/div&amp;gt;var app2 = new Vue(&amp;#123;  el: &apos;#app-2&apos;,  data: &amp;#123">
-<meta property="og:updated_time" content="2017-04-07T10:39:40.000Z">
+<meta property="og:updated_time" content="2017-04-20T02:50:46.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="vue过留痕">
 <meta name="twitter:description" content="简单的vue demo
@@ -128,7 +128,7 @@
 <h3 id="组件-1"><a href="#组件-1" class="headerlink" title="组件"></a>组件</h3><p>父子之间通信</p>
 <p>父组件是使用 props 传递数据给子组件<br>子组件要把数据传递回去，自定义事件<br>父： $on(eventName) 监听事件，子： $emit(eventName) 触发事件</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;table&gt;   </div><div class="line">  &lt;tr is=<span class="string">"my-row"</span>&gt;&lt;/tr&gt;  //  注意子组件建议， 而不是&lt;my-row&gt;..&lt;/my-row&gt;, 因为受HTML限制，table+tr，ul+li</div><div class="line">&lt;/table&gt;</div></pre></td></tr></table></figure>
-<font color="red">实例data是对象， 组件data是函数 data: function() {returen { c: 1}} </font>
+<p><br><font color="red">实例data是对象， 组件data是函数 data: function() {returen { c: 1}} </font><br></p>
 
 
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">&lt;div id=<span class="string">"box"</span>&gt;</div><div class="line">    &lt;input <span class="built_in">type</span>=<span class="string">"text"</span> v-model=<span class="string">"newItem"</span> v-on:keyup.enter=<span class="string">"pushNew"</span> /&gt;</div><div class="line">    &lt;ul&gt;</div><div class="line">        &lt;li is=<span class="string">"my-com"</span>  v-for=<span class="string">"(item,index) in allItem"</span> v-bind:item=<span class="string">"item"</span> v-bind:key=<span class="string">"item"</span> v-on:remove=<span class="string">"removeThis(index)"</span>&gt;&lt;/li&gt;</div><div class="line">    &lt;/ul&gt;</div><div class="line">&lt;/div&gt;</div><div class="line"></div><div class="line"> var vm = new Vue(&#123;</div><div class="line">       el:<span class="string">'#box'</span>,</div><div class="line">       data:&#123;</div><div class="line">           newItem: <span class="string">''</span>,</div><div class="line">           allItem: []</div><div class="line">       &#125;,</div><div class="line">       components: &#123;</div><div class="line">           <span class="string">'my-com'</span>: &#123;</div><div class="line">               props: [<span class="string">'item'</span>],</div><div class="line">               template: <span class="string">'&lt;li&gt;&#123;&#123; item &#125;&#125; &lt;button v-on:click="$emit(\'</span>remove\<span class="string">')"&gt;x&lt;/button&gt;&lt;/li&gt;'</span></div><div class="line">           &#125;</div><div class="line">       &#125;,</div><div class="line">       methods: &#123;</div><div class="line">           pushNew: <span class="function"><span class="title">function</span></span>() &#123;</div><div class="line">               this.allItem.push(this.newItem)</div><div class="line">               this.newItem = <span class="string">''</span></div><div class="line">           &#125;,</div><div class="line">           removeThis: <span class="keyword">function</span>(index) &#123;</div><div class="line">               this.allItem.splice(index, 1)</div><div class="line">           &#125;</div><div class="line">       &#125;</div><div class="line">   &#125;);</div></pre></td></tr></table></figure>
@@ -157,7 +157,7 @@ reverse()
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/03/14/vue过留痕/" data-id="cj1cx5u850005unltzg81yblk" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/03/14/vue过留痕/" data-id="cj1puon9d0004ohlt8rea7w40" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技术/">技术</a></li></ul>
@@ -252,6 +252,10 @@ reverse()
       <ul>
         
           <li>
+            <a href="/2017/04/20/Js创建对象及继承/">Js创建对象及继承</a>
+          </li>
+        
+          <li>
             <a href="/2017/04/10/移动端自适应/">移动端自适应</a>
           </li>
         
@@ -265,10 +269,6 @@ reverse()
         
           <li>
             <a href="/2017/02/16/Node-js＋gulp-js构建前端自动化环境/">Node.js＋gulp.js构建前端自动化环境</a>
-          </li>
-        
-          <li>
-            <a href="/2017/02/15/通过github创建hexo网站/">通过hexo建立blog,并发布在github</a>
           </li>
         
       </ul>

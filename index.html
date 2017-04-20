@@ -59,6 +59,192 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Js创建对象及继承" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/20/Js创建对象及继承/" class="article-date">
+  <time datetime="2017-04-20T02:29:06.000Z" itemprop="datePublished">2017-04-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/20/Js创建对象及继承/">Js创建对象及继承</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-创建对象-（通过字面量或者Object构造函数）"><a href="#1-创建对象-（通过字面量或者Object构造函数）" class="headerlink" title="1.创建对象 （通过字面量或者Object构造函数）"></a>1.创建对象 （通过字面量或者Object构造函数）</h3><pre><code>var person = {}; or new Object();
+person.age = 12;
+person.say = function() {
+    alert(this.age)
+}
+</code></pre><p><font color="red">缺点：使用同一个接口创建很多对象，会产生大量重复代码</font></p>
+
+<h3 id="2-工厂模式-（通过函数来封装特定接口创建对象）"><a href="#2-工厂模式-（通过函数来封装特定接口创建对象）" class="headerlink" title="2.工厂模式 （通过函数来封装特定接口创建对象）"></a>2.工厂模式 （通过函数来封装特定接口创建对象）</h3><pre><code>function creatPerson(age) {
+    var o = new Object();
+    o.age = age;
+    o.say = function() {
+        alert(this.age);
+    }
+    return o;
+}
+var person1 = createPerson(23);
+var person2 = createPerson(21);
+</code></pre><p><font color="red">缺点：虽然解决了创建多个相似对象问题，但却没有解决对象识别问题（即怎样知道一个对象的类型）</font></p>
+
+<h3 id="3-构造函数模式-（创建自定义构造函数，从而定义自定义对象类型属性和方法）"><a href="#3-构造函数模式-（创建自定义构造函数，从而定义自定义对象类型属性和方法）" class="headerlink" title="3.构造函数模式 （创建自定义构造函数，从而定义自定义对象类型属性和方法）"></a>3.构造函数模式 （创建自定义构造函数，从而定义自定义对象类型属性和方法）</h3><pre><code>function Person(age) {
+    this.age = age;
+    this.say = function() {
+        alert(this.age);
+    }
+}     
+var person1 = new Person(23);
+var person2 = new Person(21);
+</code></pre><p><span></span></p>
+<pre><code>function say() { alert(this.age); }  //  全局函数
+</code></pre><p><font color="red">缺点：不同实例上的同名函数不相等。person1.say == person2.say  //  false<br>将this.say改成指针指向全局函数say()。这样就不用创建不同Function实例,但是say()是全局函数，没有封装性可言。</font></p>
+
+<h3 id="4-原型模式（通过原型对象共享属性和方法）"><a href="#4-原型模式（通过原型对象共享属性和方法）" class="headerlink" title="4.原型模式（通过原型对象共享属性和方法）"></a>4.原型模式（通过原型对象共享属性和方法）</h3><pre><code>function Person() {
+}
+Person.prototype.age = 23;
+Person.prototype.say = function() {
+    alert(this.age)
+}
+
+var person1 = new Person();
+var person2 = new Person();
+
+person1.say == person2.say   // true
+</code></pre><blockquote>
+<p> 创建函数，自动拥有prototype属性，这个属性指向函数的原型对象。<br>   实例与构造函数的原型对象是有关系的，与构造函数没关系。</p>
+</blockquote>
+<pre><code>person1.age = 1;
+person1.age // 1
+person2.age // 23
+</code></pre><p>person1先访问实例属性，再访问原型属性。通过delete person1.age 删除实例属性， 随后即可访问原型属性。</p>
+<p>判断实例是否拥有属性<br>“age” in person1</p>
+<p>判断是否实例属性<br>person1 hasOwnProperty(“name”)</p>
+<p>更简单的原型语法</p>
+<pre><code> function Person() {
+ }
+ Person.prototype = {
+     age: 23,
+     say: function() {
+         alert(this.age);
+     }
+ }
+
+Person.prototype.name  =&gt;  person1.constructor = Person 
+Person.prototype =  {}    =&gt;  字面量赋值，改写了person1.constructor ＝ Object
+Person.prototype = {
+     constructor:  Person,
+     age: 23
+     ...
+}
+</code></pre><p>原生对象的原型：<br>Array.prototype.sort</p>
+<p>Person.prototype.friend = [‘tony’]<br>person1.friends.push(‘van’)   // tony, van<br>person2.friends // tony,van</p>
+<p><font color="red">缺点：省略了为构造函数传递初始化参数这一环节，所有实例在默认情况下将取得相同的属性值。</font></p>
+
+<h3 id="5-构造函数＋原型模式"><a href="#5-构造函数＋原型模式" class="headerlink" title="5.构造函数＋原型模式"></a>5.构造函数＋原型模式</h3><pre><code>function Person(age) {
+    this.age = age;
+    this.friend = [&apos;tony&apos;]
+}
+
+Person.prototype = {
+    constrostor: Person,
+    say: function() {
+        alert(this.name);
+    }
+}
+
+var person1 = new Person(1);
+var Person2 = new Person(2);
+
+person1.friends.push(&quot;van&quot;);
+
+person1.friends  // tony, van
+person2.friends  // tony
+
+person1.say === person2.say // true
+</code></pre><h3 id="6-动态原型模式（由于开发人员看到独立的构造函数和原型时困惑，所以把所有信息都封装在构造函数中）"><a href="#6-动态原型模式（由于开发人员看到独立的构造函数和原型时困惑，所以把所有信息都封装在构造函数中）" class="headerlink" title="6.动态原型模式（由于开发人员看到独立的构造函数和原型时困惑，所以把所有信息都封装在构造函数中）"></a>6.动态原型模式（由于开发人员看到独立的构造函数和原型时困惑，所以把所有信息都封装在构造函数中）</h3><pre><code>function Person(age) {
+    this.age = age;
+    if( typeof this.say != &apos;function&apos;) {
+        Person.prototype.say = function() {
+            alert(this.age);
+        }
+    }
+}  
+</code></pre><p><font color="red">使用动态原型模型时，不能使用对象字面量重写原型。</font></p>
+
+<h3 id="7-寄生构造函数模式"><a href="#7-寄生构造函数模式" class="headerlink" title="7.寄生构造函数模式"></a>7.寄生构造函数模式</h3><p>与工厂模式相似，只是通过new 构造函数不一样。<br>构造函数默认返回新对象实例，通过在构造函数末尾添加return语句，<font color="red">重写调用构造函数时返回的值。</font></p>
+<h3 id="8-稳妥构造函数模式-（不使用this，new）"><a href="#8-稳妥构造函数模式-（不使用this，new）" class="headerlink" title="8. 稳妥构造函数模式 （不使用this，new）"></a>8. 稳妥构造函数模式 （不使用this，new）</h3><p>========================</p>
+<h1 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h1><h3 id="1-原型链继承"><a href="#1-原型链继承" class="headerlink" title="1.原型链继承"></a>1.原型链继承</h3><pre><code>function SuperType() {
+    this.colors = [&apos;red&apos;]
+} 
+
+function SubType() {}
+
+SubType.prototype = new SuperType()  // 继承了SuperType
+
+var instance1 = new SubType();
+instance1.colors.push(&apos;blue&apos;);
+instance1.colors  // red, blue
+
+var instance2 = new SubType();
+instance2.colors // red, blue
+</code></pre><p><font color="red">问题： SuperType每个实例都有各自colors属性，SubType所有实例共享同一个colors属性。在创建子类型的实例时，不能向超类型的构造函数传递参数。</font></p>
+
+<h3 id="2-借用构造函数"><a href="#2-借用构造函数" class="headerlink" title="2.借用构造函数"></a>2.借用构造函数</h3><pre><code>function SuperType(name) {
+    this.colors = [&apos;red&apos;];
+    this.name = name;
+} 
+
+function SubType() {
+    SuperType.call(this,&apos;wu&apos;);  // 继承了SuperType
+}
+</code></pre><p>在子类型构造函数内部调用超类型构造函数。（call(), apply()执行构造函数）</p>
+<p><font color="red">问题： 方法都在构造函数中定义，因此无法函数复用。（在超类型的原型中定义的方法，对子类型而言不可见）</font></p>
+
+<h3 id="3-组合继承（原型链＋借用构造函数）"><a href="#3-组合继承（原型链＋借用构造函数）" class="headerlink" title="3.组合继承（原型链＋借用构造函数）"></a>3.组合继承（原型链＋借用构造函数）</h3><pre><code>function SuperType(name) {
+    this.colors = [&apos;red&apos;];
+    this.name = name;
+} 
+
+SuperType.prototype.say = function() {
+    alert(this.name);
+}
+
+function SubType() {
+    SuperType.call(this,&apos;wu&apos;);  // 继承属性
+}
+
+SubType.prototype = new SuperType(); // 继承方法
+</code></pre><p>此处原型链也继承了属性</p>
+<p>var instance1 ＝ new SubType(‘wu’);</p>
+<p>instance1.name = wu //   实例name<br>delete instance1.name<br>instance1.name = wu  //  原型对象name<br>“name” in instance1  // true<br>instance1.hasOwnProperty(‘name’)   // false</p>
+<h3 id="4-原型式继承"><a href="#4-原型式继承" class="headerlink" title="4.原型式继承"></a>4.原型式继承</h3><h3 id="5-寄生式继承"><a href="#5-寄生式继承" class="headerlink" title="5.寄生式继承"></a>5.寄生式继承</h3><h3 id="6-寄生组合式继承"><a href="#6-寄生组合式继承" class="headerlink" title="6.寄生组合式继承"></a>6.寄生组合式继承</h3>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/04/20/Js创建对象及继承/" data-id="cj1puon950001ohltfbv6zrkb" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+  
+
+  
     <article id="post-移动端自适应" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/04/10/移动端自适应/" class="article-date">
@@ -93,7 +279,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/04/10/移动端自适应/" data-id="cj1cx5u7t0002unltxylm6rol" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/04/10/移动端自适应/" data-id="cj1puon9g0005ohltr9rzhjt4" class="article-share-link">Share</a>
       
       
     </footer>
@@ -165,7 +351,7 @@
 <h3 id="组件-1"><a href="#组件-1" class="headerlink" title="组件"></a>组件</h3><p>父子之间通信</p>
 <p>父组件是使用 props 传递数据给子组件<br>子组件要把数据传递回去，自定义事件<br>父： $on(eventName) 监听事件，子： $emit(eventName) 触发事件</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;table&gt;   </div><div class="line">  &lt;tr is=<span class="string">"my-row"</span>&gt;&lt;/tr&gt;  //  注意子组件建议， 而不是&lt;my-row&gt;..&lt;/my-row&gt;, 因为受HTML限制，table+tr，ul+li</div><div class="line">&lt;/table&gt;</div></pre></td></tr></table></figure>
-<font color="red">实例data是对象， 组件data是函数 data: function() {returen { c: 1}} </font>
+<p><br><font color="red">实例data是对象， 组件data是函数 data: function() {returen { c: 1}} </font><br></p>
 
 
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">&lt;div id=<span class="string">"box"</span>&gt;</div><div class="line">    &lt;input <span class="built_in">type</span>=<span class="string">"text"</span> v-model=<span class="string">"newItem"</span> v-on:keyup.enter=<span class="string">"pushNew"</span> /&gt;</div><div class="line">    &lt;ul&gt;</div><div class="line">        &lt;li is=<span class="string">"my-com"</span>  v-for=<span class="string">"(item,index) in allItem"</span> v-bind:item=<span class="string">"item"</span> v-bind:key=<span class="string">"item"</span> v-on:remove=<span class="string">"removeThis(index)"</span>&gt;&lt;/li&gt;</div><div class="line">    &lt;/ul&gt;</div><div class="line">&lt;/div&gt;</div><div class="line"></div><div class="line"> var vm = new Vue(&#123;</div><div class="line">       el:<span class="string">'#box'</span>,</div><div class="line">       data:&#123;</div><div class="line">           newItem: <span class="string">''</span>,</div><div class="line">           allItem: []</div><div class="line">       &#125;,</div><div class="line">       components: &#123;</div><div class="line">           <span class="string">'my-com'</span>: &#123;</div><div class="line">               props: [<span class="string">'item'</span>],</div><div class="line">               template: <span class="string">'&lt;li&gt;&#123;&#123; item &#125;&#125; &lt;button v-on:click="$emit(\'</span>remove\<span class="string">')"&gt;x&lt;/button&gt;&lt;/li&gt;'</span></div><div class="line">           &#125;</div><div class="line">       &#125;,</div><div class="line">       methods: &#123;</div><div class="line">           pushNew: <span class="function"><span class="title">function</span></span>() &#123;</div><div class="line">               this.allItem.push(this.newItem)</div><div class="line">               this.newItem = <span class="string">''</span></div><div class="line">           &#125;,</div><div class="line">           removeThis: <span class="keyword">function</span>(index) &#123;</div><div class="line">               this.allItem.splice(index, 1)</div><div class="line">           &#125;</div><div class="line">       &#125;</div><div class="line">   &#125;);</div></pre></td></tr></table></figure>
@@ -194,7 +380,7 @@ reverse()
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/03/14/vue过留痕/" data-id="cj1cx5u850005unltzg81yblk" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/03/14/vue过留痕/" data-id="cj1puon9d0004ohlt8rea7w40" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技术/">技术</a></li></ul>
@@ -238,7 +424,7 @@ reverse()
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/03/01/聊聊助我成长的团队/" data-id="cj1cx5u8g0007unltfra6pqxo" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/03/01/聊聊助我成长的团队/" data-id="cj1puon9j0007ohltgs557w6a" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/生活/">生活</a></li></ul>
@@ -349,7 +535,7 @@ gulp.task(&apos;default&apos;, function() {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/02/16/Node-js＋gulp-js构建前端自动化环境/" data-id="cj1cx5u800004unltn6amt05m" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/02/16/Node-js＋gulp-js构建前端自动化环境/" data-id="cj1puon900000ohlt6yjljta9" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技术/">技术</a></li></ul>
@@ -441,7 +627,7 @@ gulp.task(&apos;default&apos;, function() {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/02/15/通过github创建hexo网站/" data-id="cj1cx5u8h0008unltcru7vgnt" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/02/15/通过github创建hexo网站/" data-id="cj1puon9n0009ohlttgf8or66" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技术/">技术</a></li></ul>
@@ -489,7 +675,7 @@ gulp.task(&apos;default&apos;, function() {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/02/14/hello-world/" data-id="cj1cx5u7k0000unltzbo1pag7" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/02/14/hello-world/" data-id="cj1puon9b0003ohltvlet0zjq" class="article-share-link">Share</a>
       
       
     </footer>
@@ -544,6 +730,10 @@ gulp.task(&apos;default&apos;, function() {
       <ul>
         
           <li>
+            <a href="/2017/04/20/Js创建对象及继承/">Js创建对象及继承</a>
+          </li>
+        
+          <li>
             <a href="/2017/04/10/移动端自适应/">移动端自适应</a>
           </li>
         
@@ -557,10 +747,6 @@ gulp.task(&apos;default&apos;, function() {
         
           <li>
             <a href="/2017/02/16/Node-js＋gulp-js构建前端自动化环境/">Node.js＋gulp.js构建前端自动化环境</a>
-          </li>
-        
-          <li>
-            <a href="/2017/02/15/通过github创建hexo网站/">通过hexo建立blog,并发布在github</a>
           </li>
         
       </ul>
