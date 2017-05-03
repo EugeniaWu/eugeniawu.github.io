@@ -3,27 +3,36 @@
 <head>
   <meta charset="utf-8">
   
-  <title>移动端自适应 | Eugenia的博客</title>
+  <title>css3 动画 | Eugenia的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1.定高，宽度自适应1&amp;lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1”&amp;gt;
-设置width=device-width
-目前使用最多的方法，垂直方向用定值，水平方向用百分比、定值、flex都行640的设计稿，以320做网站视觉参考，按设计稿的1/2尺寸去定义网页图像尺寸。
-2.固定宽度，对viewport宽">
+  <meta name="description" content="三个概念
+
+1.变形属性transform2.动画属性transition3.带keyframes的动画属性 animate
+1.变形属性transform
+
+语法：transform ： none | transform-function也就是：transform: none | rotate | scale | skew | translate |matrix;
+transform: none">
 <meta property="og:type" content="article">
-<meta property="og:title" content="移动端自适应">
-<meta property="og:url" content="http://yoursite.com/2017/04/10/移动端自适应/index.html">
+<meta property="og:title" content="css3 动画">
+<meta property="og:url" content="http://yoursite.com/2017/05/03/css3-动画/index.html">
 <meta property="og:site_name" content="Eugenia的博客">
-<meta property="og:description" content="1.定高，宽度自适应1&amp;lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1”&amp;gt;
-设置width=device-width
-目前使用最多的方法，垂直方向用定值，水平方向用百分比、定值、flex都行640的设计稿，以320做网站视觉参考，按设计稿的1/2尺寸去定义网页图像尺寸。
-2.固定宽度，对viewport宽">
-<meta property="og:updated_time" content="2017-04-11T02:19:46.000Z">
+<meta property="og:description" content="三个概念
+
+1.变形属性transform2.动画属性transition3.带keyframes的动画属性 animate
+1.变形属性transform
+
+语法：transform ： none | transform-function也就是：transform: none | rotate | scale | skew | translate |matrix;
+transform: none">
+<meta property="og:updated_time" content="2017-05-03T03:30:05.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="移动端自适应">
-<meta name="twitter:description" content="1.定高，宽度自适应1&amp;lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1”&amp;gt;
-设置width=device-width
-目前使用最多的方法，垂直方向用定值，水平方向用百分比、定值、flex都行640的设计稿，以320做网站视觉参考，按设计稿的1/2尺寸去定义网页图像尺寸。
-2.固定宽度，对viewport宽">
+<meta name="twitter:title" content="css3 动画">
+<meta name="twitter:description" content="三个概念
+
+1.变形属性transform2.动画属性transition3.带keyframes的动画属性 animate
+1.变形属性transform
+
+语法：transform ： none | transform-function也就是：transform: none | rotate | scale | skew | translate |matrix;
+transform: none">
   
   
     <link rel="icon" href="/favicon.png">
@@ -70,10 +79,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-移动端自适应" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-css3-动画" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/04/10/移动端自适应/" class="article-date">
-  <time datetime="2017-04-10T10:16:40.000Z" itemprop="datePublished">2017-04-10</time>
+    <a href="/2017/05/03/css3-动画/" class="article-date">
+  <time datetime="2017-05-03T03:13:34.000Z" itemprop="datePublished">2017-05-03</time>
 </a>
     
   </div>
@@ -84,7 +93,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      移动端自适应
+      css3 动画
     </h1>
   
 
@@ -92,40 +101,72 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="1-定高，宽度自适应"><a href="#1-定高，宽度自适应" class="headerlink" title="1.定高，宽度自适应"></a>1.定高，宽度自适应</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;meta name=<span class="string">"viewport"</span> content=<span class="string">"width=device-width,initial-scale=1”&gt;</span></div></pre></td></tr></table></figure>
-<p>设置width=device-width</p>
-<p>目前使用最多的方法，垂直方向用定值，水平方向用百分比、定值、flex都行640的设计稿，以320做网站视觉参考，按设计稿的1/2尺寸去定义网页图像尺寸。</p>
-<h2 id="2-固定宽度，对viewport宽度进行定值"><a href="#2-固定宽度，对viewport宽度进行定值" class="headerlink" title="2.固定宽度，对viewport宽度进行定值"></a>2.固定宽度，对viewport宽度进行定值</h2><p>设置 </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;meta name=<span class="string">"viewport"</span> content=<span class="string">"width=1120"</span>&gt;</div></pre></td></tr></table></figure>
-<p>某些安卓机缩放失效，需js动态设置initial-scale缺点： 像素丢失</p>
-<h2 id="3-利用rem布局-＋-viewport缩放"><a href="#3-利用rem布局-＋-viewport缩放" class="headerlink" title="3.利用rem布局 ＋ viewport缩放"></a>3.利用rem布局 ＋ viewport缩放</h2><p>dpr计算 ＋ css预处理器函数 viewport，js动态设置initial-scale</p>
-<p>参考<a href="https://github.com/riskers/blog/issues/18" target="_blank" rel="external">https://github.com/riskers/blog/issues/18</a></p>
+        <h3>三个概念</h3>
 
+<p>1.变形属性transform<br>2.动画属性transition<br>3.带keyframes的动画属性 animate</p>
+<h3>1.变形属性transform</h3>
+
+<p>语法：<br>transform ： none | transform-function<br>也就是：<br>transform: none | rotate | scale | skew | translate |matrix;</p>
+<pre><code>transform: none
+transform: matrix(1.0, 2.0, 3.0, 4.0, 5.0, 6.0)
+transform: translate(12px, 50%)  // translate(x,y)水平方向和垂直方向同时移动
+transform: translateX(2em)
+transform: translateY(3in)
+transform: scale(2, 0.5)   // scale(x,y)使元素水平方向和垂直方向同时缩放
+transform: scaleX(2)
+transform: scaleY(0.5)
+transform: rotate(90deg)   // 旋转
+transform: skewX(30deg)     // skew(x,y)使元素在水平和垂直方向同时扭曲
+transform: skewY(1.07rad)
+transform: matrix3d(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0)
+transform: translate3d(12px, 50%, 3em)
+transform: translateZ(2px)
+transform: scale3d(2.5, 1.2, 0.3)
+transform: scaleZ(0.3)
+transform: rotate3d(1, 2.0, 3.0, 10deg)
+transform: rotateX(10deg)
+transform: rotateY(10deg)
+transform: rotateZ(10deg)
+transform: perspective(17px)
+</code></pre><p><font color="red">transform中使用多个属性时却需要有空格隔开： transform: translateX(10px) rotate(10deg) translateY(5px)</font></p>
+
+<h3>2.transition动画</h3><br>语法<br>transition: property duration timing-function delay;<br><br>规定设置过渡效果的 CSS 属性的名称 none|all|property;<br>规定完成过渡效果需要多少秒或毫秒<br>规定速度效果的速度曲线<br>定义过渡效果何时开始<br><br><p><font color="red">用法：transition: background 0.2s ease-in-out .1s;</font></p><br><br>timing-function: linear | ease | ease-in | ease-out | ease-in-out | cubic-bezier(n,n,n,n)  规定动画的速度曲线<br><br>    <style><br>        div {<br>            width:100px;<br>            height:100px;<br>            background:blue;<br>            transition-property: width, background;<br>            transition-duration: 2s;<br>        }<br><br>        div:hover {<br>            width: 200px;<br>            background: red;<br>        }<br>    </style><br><br><br><br><h3>3.animation动画</h3>
+
+<p>制作一个简单的transition效果时，我们包括了初始属性和最终属性，一个开始执行动作时间和一个延续动作时间以及动作的变换速率，其实这些值都是一个中间值，如果我们要控制的更细一些，比如说我要第一个时间段执行什么动作，第二个时间段执行什么动作（换到flash中说，就是第一帧我要执行什么动作，第二帧我要执行什么动作），这样我们用Transition就很难实现了，此时我们也需要这样的一个“关键帧”来控制。</p>
+<p>语法：<br>animation: name duration timing-function delay iteration-count direction;</p>
+<p>规定需要绑定到选择器的 keyframe 名称<br>规定完成动画所花费的时间，以秒或毫秒计<br>规定动画的速度曲线<br>规定在动画开始之前的延迟<br>规定动画应该播放的次数  infinite无限<br>规定是否应该轮流反向播放动画 normal正常播放 alternate反向播放</p>
+<pre><code>&lt;style&gt; 
+    div {
+        width:100px;
+        height:100px;
+        background:red;
+        animation:myfirst 5s linear 2s infinite alternate;
+    }
+
+    @keyframes myfirst {
+        from {background:red;}
+        to {background:yellow;}
+    }
+&lt;/style&gt;
+</code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/04/10/移动端自适应/" data-id="cj28fe29v0006uiltguykxekn" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/05/03/css3-动画/" data-id="cj28fe29t0005uiltdubo8h95" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li></ul>
+
     </footer>
   </div>
   
     
 <nav id="article-nav">
   
-    <a href="/2017/04/20/Js创建对象及继承/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Js创建对象及继承
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/03/14/vue过留痕/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2017/04/20/Js创建对象及继承/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">vue过留痕</div>
+      <div class="article-nav-title">Js创建对象及继承</div>
     </a>
   
 </nav>
@@ -136,7 +177,7 @@
   
   <section id="comments">
     <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="post-移动端自适应" data-title="移动端自适应" data-url="http://yoursite.com/2017/04/10/移动端自适应/"></div>
+    <div class="ds-thread" data-thread-key="post-css3-动画" data-title="css3 动画" data-url="http://yoursite.com/2017/05/03/css3-动画/"></div>
     <!-- 多说评论框 end -->
     <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
     <script type="text/javascript">

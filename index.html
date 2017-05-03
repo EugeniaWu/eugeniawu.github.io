@@ -59,6 +59,92 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-css3-动画" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/03/css3-动画/" class="article-date">
+  <time datetime="2017-05-03T03:13:34.000Z" itemprop="datePublished">2017-05-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/03/css3-动画/">css3 动画</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3>三个概念</h3>
+
+<p>1.变形属性transform<br>2.动画属性transition<br>3.带keyframes的动画属性 animate</p>
+<h3>1.变形属性transform</h3>
+
+<p>语法：<br>transform ： none | transform-function<br>也就是：<br>transform: none | rotate | scale | skew | translate |matrix;</p>
+<pre><code>transform: none
+transform: matrix(1.0, 2.0, 3.0, 4.0, 5.0, 6.0)
+transform: translate(12px, 50%)  // translate(x,y)水平方向和垂直方向同时移动
+transform: translateX(2em)
+transform: translateY(3in)
+transform: scale(2, 0.5)   // scale(x,y)使元素水平方向和垂直方向同时缩放
+transform: scaleX(2)
+transform: scaleY(0.5)
+transform: rotate(90deg)   // 旋转
+transform: skewX(30deg)     // skew(x,y)使元素在水平和垂直方向同时扭曲
+transform: skewY(1.07rad)
+transform: matrix3d(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0)
+transform: translate3d(12px, 50%, 3em)
+transform: translateZ(2px)
+transform: scale3d(2.5, 1.2, 0.3)
+transform: scaleZ(0.3)
+transform: rotate3d(1, 2.0, 3.0, 10deg)
+transform: rotateX(10deg)
+transform: rotateY(10deg)
+transform: rotateZ(10deg)
+transform: perspective(17px)
+</code></pre><p><font color="red">transform中使用多个属性时却需要有空格隔开： transform: translateX(10px) rotate(10deg) translateY(5px)</font></p>
+
+<h3>2.transition动画</h3><br>语法<br>transition: property duration timing-function delay;<br><br>规定设置过渡效果的 CSS 属性的名称 none|all|property;<br>规定完成过渡效果需要多少秒或毫秒<br>规定速度效果的速度曲线<br>定义过渡效果何时开始<br><br><p><font color="red">用法：transition: background 0.2s ease-in-out .1s;</font></p><br><br>timing-function: linear | ease | ease-in | ease-out | ease-in-out | cubic-bezier(n,n,n,n)  规定动画的速度曲线<br><br>    <style><br>        div {<br>            width:100px;<br>            height:100px;<br>            background:blue;<br>            transition-property: width, background;<br>            transition-duration: 2s;<br>        }<br><br>        div:hover {<br>            width: 200px;<br>            background: red;<br>        }<br>    </style><br><br><br><br><h3>3.animation动画</h3>
+
+<p>制作一个简单的transition效果时，我们包括了初始属性和最终属性，一个开始执行动作时间和一个延续动作时间以及动作的变换速率，其实这些值都是一个中间值，如果我们要控制的更细一些，比如说我要第一个时间段执行什么动作，第二个时间段执行什么动作（换到flash中说，就是第一帧我要执行什么动作，第二帧我要执行什么动作），这样我们用Transition就很难实现了，此时我们也需要这样的一个“关键帧”来控制。</p>
+<p>语法：<br>animation: name duration timing-function delay iteration-count direction;</p>
+<p>规定需要绑定到选择器的 keyframe 名称<br>规定完成动画所花费的时间，以秒或毫秒计<br>规定动画的速度曲线<br>规定在动画开始之前的延迟<br>规定动画应该播放的次数  infinite无限<br>规定是否应该轮流反向播放动画 normal正常播放 alternate反向播放</p>
+<pre><code>&lt;style&gt; 
+    div {
+        width:100px;
+        height:100px;
+        background:red;
+        animation:myfirst 5s linear 2s infinite alternate;
+    }
+
+    @keyframes myfirst {
+        from {background:red;}
+        to {background:yellow;}
+    }
+&lt;/style&gt;
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/05/03/css3-动画/" data-id="cj28fe29t0005uiltdubo8h95" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+  
+
+  
     <article id="post-Js创建对象及继承" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/04/20/Js创建对象及继承/" class="article-date">
@@ -234,7 +320,7 @@ SubType.prototype = new SuperType(); // 继承方法
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/04/20/Js创建对象及继承/" data-id="cj28epv2b0002jeltpxhl0ibt" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/04/20/Js创建对象及继承/" data-id="cj28fe29j0002uiltnvz6goyh" class="article-share-link">Share</a>
       
       
     </footer>
@@ -279,7 +365,7 @@ SubType.prototype = new SuperType(); // 继承方法
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/04/10/移动端自适应/" data-id="cj28epv2p0007jeltmkfoykzx" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/04/10/移动端自适应/" data-id="cj28fe29v0006uiltguykxekn" class="article-share-link">Share</a>
       
       
     </footer>
@@ -380,7 +466,7 @@ reverse()
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/03/14/vue过留痕/" data-id="cj28epv2l0006jeltln3sawzn" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/03/14/vue过留痕/" data-id="cj28fe2aa000auiltggc7461n" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技术/">技术</a></li></ul>
@@ -424,7 +510,7 @@ reverse()
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/03/01/聊聊助我成长的团队/" data-id="cj28epv2v0009jelt49u7zr0n" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/03/01/聊聊助我成长的团队/" data-id="cj28fe2ae000cuilt6dnkihln" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/生活/">生活</a></li></ul>
@@ -535,7 +621,7 @@ gulp.task(&apos;default&apos;, function() {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/02/16/Node-js＋gulp-js构建前端自动化环境/" data-id="cj28epv240000jelt7aqwxqhn" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/02/16/Node-js＋gulp-js构建前端自动化环境/" data-id="cj28fe29f0001uiltudprb3qa" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技术/">技术</a></li></ul>
@@ -627,7 +713,7 @@ gulp.task(&apos;default&apos;, function() {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/02/15/通过github创建hexo网站/" data-id="cj28epv39000djeltuf2fz4y6" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/02/15/通过github创建hexo网站/" data-id="cj28fe2ag000euilt92psnyb8" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技术/">技术</a></li></ul>
@@ -675,7 +761,7 @@ gulp.task(&apos;default&apos;, function() {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/02/14/hello-world/" data-id="cj28epv2i0005jelte90kw8o8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/02/14/hello-world/" data-id="cj28fe29o0004uilt7tekq7zw" class="article-share-link">Share</a>
       
       
     </footer>
@@ -698,7 +784,7 @@ gulp.task(&apos;default&apos;, function() {
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/生活/">生活</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/生活/">生活</a></li></ul>
     </div>
   </div>
 
@@ -708,7 +794,7 @@ gulp.task(&apos;default&apos;, function() {
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/技术/" style="font-size: 20px;">技术</a> <a href="/tags/生活/" style="font-size: 10px;">生活</a>
+      <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/技术/" style="font-size: 20px;">技术</a> <a href="/tags/生活/" style="font-size: 10px;">生活</a>
     </div>
   </div>
 
@@ -717,7 +803,7 @@ gulp.task(&apos;default&apos;, function() {
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li></ul>
     </div>
   </div>
 
@@ -728,6 +814,10 @@ gulp.task(&apos;default&apos;, function() {
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2017/05/03/css3-动画/">css3 动画</a>
+          </li>
         
           <li>
             <a href="/2017/04/20/Js创建对象及继承/">Js创建对象及继承</a>
@@ -743,10 +833,6 @@ gulp.task(&apos;default&apos;, function() {
         
           <li>
             <a href="/2017/03/01/聊聊助我成长的团队/">聊聊助我成长的团队</a>
-          </li>
-        
-          <li>
-            <a href="/2017/02/16/Node-js＋gulp-js构建前端自动化环境/">Node.js＋gulp.js构建前端自动化环境</a>
           </li>
         
       </ul>
