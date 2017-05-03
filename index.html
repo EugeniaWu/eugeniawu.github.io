@@ -59,6 +59,91 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Js闭包" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/03/Js闭包/" class="article-date">
+  <time datetime="2017-05-03T03:41:49.000Z" itemprop="datePublished">2017-05-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/03/Js闭包/">Js闭包</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3>定义：</h3>
+
+
+<p>闭包是指有权访问另一个函数作用域中的变量函数。</p>
+<p>一般来讲，当函数执行完毕后，局部活动对象就会被销毁，内存中仅保存全局作用域（全局执行环境的变量对象）。<br>但是闭包函数不同。</p>
+<p>闭包函数能访问到外部（活动对象）的属性，<font color="red">所以外部函数的活动对象不会执行后自动销毁。</font><br>闭包函数直行后，其活动对象自行销毁，保存全局变量对象。但是其作用链上的其他函数下的活动对象仍保存，<font color="red">要通过null将其解除该函数的引用，</font>通知垃圾回收例程将其清除。(防止内存泄漏)</p>
+<h3>闭包与变量</h3>
+
+<p>闭包只能取得包含函数中任何变量的最后一个值（闭包保存的是整个变量对象，而不是某个特殊变量）</p>
+<pre><code>var result = [];
+for(var i = 0; i&lt;10; i++) {
+    result[i] = function( { 
+        return i 
+    } 
+}
+</code></pre><p><font color="red">PS： result结果是一个函数数组，每个函数都返回10。因为每个函数的作用域链中都保存着createFunctions()函数的活动对象，所以它们引用都是同一个变量i（10）。</font></p>
+
+
+
+<pre><code>var result = [];
+for(var i = 0; i&lt;10; i++) {    
+    result[i] = function(num) {        
+        return function() {            
+            return num;        
+        }    
+    }(i)
+}
+</code></pre><p>PS:由于函数参数是按值传递的，所以就会将变量i的当前值复制给参数num。result数组中的每个函数都有自己num变量的一个副本，因此返回各自不同的数值。</p>
+<h3>关于this对象：</h3>
+
+<pre><code>var name  = &quot;the window&quot;;
+
+var object = {
+    name: &quot;my Object&quot;,
+    getNameFunc: function() {
+        return function() {
+            return this.name;   // the window
+        }
+    }
+}
+</code></pre><p>每个函数在被调用时都会自动获取两个特殊变量，this和arguments。</p>
+<p><font color="red">内部函数在搜索这两个变量时，只会搜索到其活动对象为止</font>，因此永远不可能直接访问外部函数中的这两个变量。不过，把外部作用域的this对象保存在一个闭包能够访问的变量里，就可以让闭包访问该对象了。</p>
+<pre><code>var that = this;
+return function() {
+     return that.name
+}
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/05/03/Js闭包/" data-id="cj28g11400002w3ltkbzoeyu0" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+  
+
+  
     <article id="post-css3-动画" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/05/03/css3-动画/" class="article-date">
@@ -132,7 +217,7 @@ transform: perspective(17px)
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/05/03/css3-动画/" data-id="cj28fe29t0005uiltdubo8h95" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/05/03/css3-动画/" data-id="cj28g114a0005w3lt0ay7ujhc" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li></ul>
@@ -320,9 +405,11 @@ SubType.prototype = new SuperType(); // 继承方法
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/04/20/Js创建对象及继承/" data-id="cj28fe29j0002uiltnvz6goyh" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/04/20/Js创建对象及继承/" data-id="cj28g113u0000w3lt9g0dgtlv" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
     </footer>
   </div>
   
@@ -365,7 +452,7 @@ SubType.prototype = new SuperType(); // 继承方法
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/04/10/移动端自适应/" data-id="cj28fe29v0006uiltguykxekn" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/04/10/移动端自适应/" data-id="cj28g114k000aw3lt0m1j0tht" class="article-share-link">Share</a>
       
       
     </footer>
@@ -466,7 +553,7 @@ reverse()
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/03/14/vue过留痕/" data-id="cj28fe2aa000auiltggc7461n" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/03/14/vue过留痕/" data-id="cj28g114i0007w3ltgtm08j9f" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技术/">技术</a></li></ul>
@@ -510,7 +597,7 @@ reverse()
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/03/01/聊聊助我成长的团队/" data-id="cj28fe2ae000cuilt6dnkihln" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/03/01/聊聊助我成长的团队/" data-id="cj28g114l000bw3lt9ubzj4lz" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/生活/">生活</a></li></ul>
@@ -621,7 +708,7 @@ gulp.task(&apos;default&apos;, function() {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/02/16/Node-js＋gulp-js构建前端自动化环境/" data-id="cj28fe29f0001uiltudprb3qa" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/02/16/Node-js＋gulp-js构建前端自动化环境/" data-id="cj28g11450003w3ltmht5lflb" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技术/">技术</a></li></ul>
@@ -713,7 +800,7 @@ gulp.task(&apos;default&apos;, function() {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/02/15/通过github创建hexo网站/" data-id="cj28fe2ag000euilt92psnyb8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/02/15/通过github创建hexo网站/" data-id="cj28g114n000dw3ltoklji5dl" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技术/">技术</a></li></ul>
@@ -761,7 +848,7 @@ gulp.task(&apos;default&apos;, function() {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/02/14/hello-world/" data-id="cj28fe29o0004uilt7tekq7zw" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/02/14/hello-world/" data-id="cj28g114c0006w3lt6n2p9ak7" class="article-share-link">Share</a>
       
       
     </footer>
@@ -784,7 +871,7 @@ gulp.task(&apos;default&apos;, function() {
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/生活/">生活</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/生活/">生活</a></li></ul>
     </div>
   </div>
 
@@ -794,7 +881,7 @@ gulp.task(&apos;default&apos;, function() {
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/技术/" style="font-size: 20px;">技术</a> <a href="/tags/生活/" style="font-size: 10px;">生活</a>
+      <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/javascript/" style="font-size: 15px;">javascript</a> <a href="/tags/技术/" style="font-size: 20px;">技术</a> <a href="/tags/生活/" style="font-size: 10px;">生活</a>
     </div>
   </div>
 
@@ -816,6 +903,10 @@ gulp.task(&apos;default&apos;, function() {
       <ul>
         
           <li>
+            <a href="/2017/05/03/Js闭包/">Js闭包</a>
+          </li>
+        
+          <li>
             <a href="/2017/05/03/css3-动画/">css3 动画</a>
           </li>
         
@@ -829,10 +920,6 @@ gulp.task(&apos;default&apos;, function() {
         
           <li>
             <a href="/2017/03/14/vue过留痕/">vue过留痕</a>
-          </li>
-        
-          <li>
-            <a href="/2017/03/01/聊聊助我成长的团队/">聊聊助我成长的团队</a>
           </li>
         
       </ul>
