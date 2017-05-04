@@ -3,36 +3,39 @@
 <head>
   <meta charset="utf-8">
   
-  <title>css3 动画 | Eugenia的博客</title>
+  <title>BFC块级格式化上下文 | Eugenia的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="三个概念
+  <meta name="description" content="BFC就是block formatting context的缩写，中文就是“块级格式化上下文”的意思。
+Formatting context是W3C CSS2.1规范中的一个概念。它是页面中的一块渲染区域，并且有一套渲染规则，它决定了其子元素将如何定位，以及和其他元素的关系和相互作用。常见的FC有BFC,IFC等。
+创建BFC
 
-1.变形属性transform2.动画属性transition3.带keyframes的动画属性 animate
-1.变形属性transform
-
-语法：transform ： none | transform-function也就是：transform: none | rotate | scale | skew | translate |matrix;
-transform: none">
+float 除了none以外的值
+overflow 除了visibl">
 <meta property="og:type" content="article">
-<meta property="og:title" content="css3 动画">
-<meta property="og:url" content="http://yoursite.com/2017/05/03/css3-动画/index.html">
+<meta property="og:title" content="BFC块级格式化上下文">
+<meta property="og:url" content="http://yoursite.com/2017/05/04/BFC块级格式化上下文/index.html">
 <meta property="og:site_name" content="Eugenia的博客">
-<meta property="og:description" content="三个概念
+<meta property="og:description" content="BFC就是block formatting context的缩写，中文就是“块级格式化上下文”的意思。
+Formatting context是W3C CSS2.1规范中的一个概念。它是页面中的一块渲染区域，并且有一套渲染规则，它决定了其子元素将如何定位，以及和其他元素的关系和相互作用。常见的FC有BFC,IFC等。
+创建BFC
 
-1.变形属性transform2.动画属性transition3.带keyframes的动画属性 animate
-1.变形属性transform
-
-语法：transform ： none | transform-function也就是：transform: none | rotate | scale | skew | translate |matrix;
-transform: none">
-<meta property="og:updated_time" content="2017-05-03T03:30:05.000Z">
+float 除了none以外的值
+overflow 除了visibl">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/a181e589gy1ff96i7jraij20b80eg0sv.jpg">
+<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/a181e589gy1ff96h7nr37j20bf052dfm.jpg">
+<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/a181e589gy1ff96hkh1v2j20bc054jr6.jpg">
+<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/a181e589gy1ff96hcnk16j20bg04c3ya.jpg">
+<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/a181e589gy1ff96hghy6jj20bc04c742.jpg">
+<meta property="og:updated_time" content="2017-05-04T03:49:39.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="css3 动画">
-<meta name="twitter:description" content="三个概念
+<meta name="twitter:title" content="BFC块级格式化上下文">
+<meta name="twitter:description" content="BFC就是block formatting context的缩写，中文就是“块级格式化上下文”的意思。
+Formatting context是W3C CSS2.1规范中的一个概念。它是页面中的一块渲染区域，并且有一套渲染规则，它决定了其子元素将如何定位，以及和其他元素的关系和相互作用。常见的FC有BFC,IFC等。
+创建BFC
 
-1.变形属性transform2.动画属性transition3.带keyframes的动画属性 animate
-1.变形属性transform
-
-语法：transform ： none | transform-function也就是：transform: none | rotate | scale | skew | translate |matrix;
-transform: none">
+float 除了none以外的值
+overflow 除了visibl">
+<meta name="twitter:image" content="http://wx2.sinaimg.cn/mw690/a181e589gy1ff96i7jraij20b80eg0sv.jpg">
   
   
     <link rel="icon" href="/favicon.png">
@@ -79,10 +82,10 @@ transform: none">
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-css3-动画" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-BFC块级格式化上下文" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/05/03/css3-动画/" class="article-date">
-  <time datetime="2017-05-03T03:13:34.000Z" itemprop="datePublished">2017-05-03</time>
+    <a href="/2017/05/04/BFC块级格式化上下文/" class="article-date">
+  <time datetime="2017-05-04T03:28:41.000Z" itemprop="datePublished">2017-05-04</time>
 </a>
     
   </div>
@@ -93,7 +96,7 @@ transform: none">
         
   
     <h1 class="article-title" itemprop="name">
-      css3 动画
+      BFC块级格式化上下文
     </h1>
   
 
@@ -101,58 +104,58 @@ transform: none">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3>三个概念</h3>
+        <p>BFC就是block formatting context的缩写，中文就是“块级格式化上下文”的意思。</p>
+<p>Formatting context是W3C CSS2.1规范中的一个概念。它是页面中的一块渲染区域，并且有一套渲染规则，它决定了其子元素将如何定位，以及和其他元素的关系和相互作用。常见的FC有BFC,IFC等。</p>
+<p>创建BFC</p>
+<ol>
+<li>float 除了none以外的值</li>
+<li>overflow 除了visible 以外的值（hidden，auto，scroll ）</li>
+<li>display (table-cell，table-caption，inline-block, flex, inline-flex)</li>
+<li>position值为（absolute，fixed）</li>
+<li>fieldset元素</li>
+</ol>
+<p><font color="red">为什么需要块级格式化上下文？</font></p>
 
-<p>1.变形属性transform<br>2.动画属性transition<br>3.带keyframes的动画属性 animate</p>
-<h3>1.变形属性transform</h3>
+<p>1.解决margin叠加问题 三P每个p之间的距离为50px，发生了外边距叠加。<br><img src="http://wx2.sinaimg.cn/mw690/a181e589gy1ff96i7jraij20b80eg0sv.jpg" alt="右图是添加overflow:hidden">    </p>
+<pre><code>&lt;html&gt;
+    &lt;div class=&quot;bfc&quot;&gt;
+        &lt;p&gt;helloword&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;p&gt;helloword&lt;/p&gt;
+    &lt;p&gt;helloword&lt;/p&gt;
+&lt;/html&gt;
 
-<p>语法：<br>transform ： none | transform-function<br>也就是：<br>transform: none | rotate | scale | skew | translate |matrix;</p>
-<pre><code>transform: none
-transform: matrix(1.0, 2.0, 3.0, 4.0, 5.0, 6.0)
-transform: translate(12px, 50%)  // translate(x,y)水平方向和垂直方向同时移动
-transform: translateX(2em)
-transform: translateY(3in)
-transform: scale(2, 0.5)   // scale(x,y)使元素水平方向和垂直方向同时缩放
-transform: scaleX(2)
-transform: scaleY(0.5)
-transform: rotate(90deg)   // 旋转
-transform: skewX(30deg)     // skew(x,y)使元素在水平和垂直方向同时扭曲
-transform: skewY(1.07rad)
-transform: matrix3d(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0)
-transform: translate3d(12px, 50%, 3em)
-transform: translateZ(2px)
-transform: scale3d(2.5, 1.2, 0.3)
-transform: scaleZ(0.3)
-transform: rotate3d(1, 2.0, 3.0, 10deg)
-transform: rotateX(10deg)
-transform: rotateY(10deg)
-transform: rotateZ(10deg)
-transform: perspective(17px)
-</code></pre><p><font color="red">transform中使用多个属性时却需要有空格隔开： transform: translateX(10px) rotate(10deg) translateY(5px)</font></p>
-
-<h3>2.transition动画</h3><br>语法<br>transition: property duration timing-function delay;<br><br>规定设置过渡效果的 CSS 属性的名称 none|all|property;<br>规定完成过渡效果需要多少秒或毫秒<br>规定速度效果的速度曲线<br>定义过渡效果何时开始<br><br><p><font color="red">用法：transition: background 0.2s ease-in-out .1s;</font></p><br><br>timing-function: linear | ease | ease-in | ease-out | ease-in-out | cubic-bezier(n,n,n,n)  规定动画的速度曲线<br><br>    <style><br>        div {<br>            width:100px;<br>            height:100px;<br>            background:blue;<br>            transition-property: width, background;<br>            transition-duration: 2s;<br>        }<br><br>        div:hover {<br>            width: 200px;<br>            background: red;<br>        }<br>    </style><br><br><br><br><h3>3.animation动画</h3>
-
-<p>制作一个简单的transition效果时，我们包括了初始属性和最终属性，一个开始执行动作时间和一个延续动作时间以及动作的变换速率，其实这些值都是一个中间值，如果我们要控制的更细一些，比如说我要第一个时间段执行什么动作，第二个时间段执行什么动作（换到flash中说，就是第一帧我要执行什么动作，第二帧我要执行什么动作），这样我们用Transition就很难实现了，此时我们也需要这样的一个“关键帧”来控制。</p>
-<p>语法：<br>animation: name duration timing-function delay iteration-count direction;</p>
-<p>规定需要绑定到选择器的 keyframe 名称<br>规定完成动画所花费的时间，以秒或毫秒计<br>规定动画的速度曲线<br>规定在动画开始之前的延迟<br>规定动画应该播放的次数  infinite无限<br>规定是否应该轮流反向播放动画 normal正常播放 alternate反向播放</p>
-<pre><code>&lt;style&gt; 
-    div {
-        width:100px;
-        height:100px;
-        background:red;
-        animation:myfirst 5s linear 2s infinite alternate;
+&lt;style&gt;
+    .bfc {
+       overflow: hidden;
     }
-
-    @keyframes myfirst {
-        from {background:red;}
-        to {background:yellow;}
+    p {
+       background: red;
+       width: 100px; 
+       height: 100px;
+       margin: 40px;
     }
 &lt;/style&gt;
+</code></pre><p>2.用于布局<br>左边元素脱离文档流后，右边元素的左外边距会触碰到包含块容器的左外边框的问题</p>
+<p><img src="http://wx1.sinaimg.cn/mw690/a181e589gy1ff96h7nr37j20bf052dfm.jpg" alt="没有BFC"><br><img src="http://wx1.sinaimg.cn/mw690/a181e589gy1ff96hkh1v2j20bc054jr6.jpg" alt="通过overflow:hidden创建BFC">    </p>
+<pre><code>&lt;div style=&quot;text-align: center; overflow: hidden; border: 10px solid #000&quot;&gt;
+    &lt;div style=&quot;float: left; width: 100px;height: 100px; background: red&quot;&gt;            
+    &lt;/div&gt;        
+    &lt;div style=&quot;float: left; width: 100px;height: 100px; background: blue;&quot;&gt;    
+    &lt;/div&gt;     
+&lt;/div&gt;
+</code></pre><p>3.用于清除浮动<br><img src="http://wx1.sinaimg.cn/mw690/a181e589gy1ff96hcnk16j20bg04c3ya.jpg" alt="没有BFC"><br><img src="http://wx1.sinaimg.cn/mw690/a181e589gy1ff96hghy6jj20bc04c742.jpg" alt="通过overflow:hidden创建BFC">    </p>
+<pre><code>&lt;div style=&quot;text-align: center; border: 10px solid #000&quot;&gt;          
+    &lt;div style=&quot;float: left; width: 100px;height: 100px; background: red&quot;&gt;            
+    &lt;/div&gt;        
+    &lt;div style=&quot;width: 150px;height: 150px; background: blue; overflow: hidden&quot;&gt;    
+    &lt;/div&gt;        
+&lt;/div&gt;
 </code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/05/03/css3-动画/" data-id="cj29ur8sj0005sxltr7kgnjjo" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/05/04/BFC块级格式化上下文/" data-id="cj29ur8s10000sxltj0upbkks" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li></ul>
@@ -163,19 +166,10 @@ transform: perspective(17px)
     
 <nav id="article-nav">
   
-    <a href="/2017/05/03/Js闭包/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Js闭包
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/04/20/Js创建对象及继承/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2017/05/03/Js闭包/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Js创建对象及继承</div>
+      <div class="article-nav-title">Js闭包</div>
     </a>
   
 </nav>
@@ -186,7 +180,7 @@ transform: perspective(17px)
   
   <section id="comments">
     <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="post-css3-动画" data-title="css3 动画" data-url="http://yoursite.com/2017/05/03/css3-动画/"></div>
+    <div class="ds-thread" data-thread-key="post-BFC块级格式化上下文" data-title="BFC块级格式化上下文" data-url="http://yoursite.com/2017/05/04/BFC块级格式化上下文/"></div>
     <!-- 多说评论框 end -->
     <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
     <script type="text/javascript">
