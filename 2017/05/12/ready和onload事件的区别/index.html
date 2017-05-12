@@ -3,14 +3,27 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Tag: javascript | Eugenia的博客</title>
+  <title>ready和onload事件的区别 | Eugenia的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Eugenia的博客">
-<meta property="og:url" content="http://yoursite.com/tags/javascript/index.html">
+  <meta name="description" content="一般遇到图片的尺寸计算时，我们在jquery下无法直接获得。
+因为我们一般使用$(function(){}),等同于$(document).ready(function(){…})的ready状态下运算。
+分析ready和unload
+ready，表示文档结构（DOM结构）已经加载完成（不包含图片等非文字媒体文件）onload, 表示页面包含图片等文件在内的所有元素都加载完成。（可以说：ready">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ready和onload事件的区别">
+<meta property="og:url" content="http://yoursite.com/2017/05/12/ready和onload事件的区别/index.html">
 <meta property="og:site_name" content="Eugenia的博客">
+<meta property="og:description" content="一般遇到图片的尺寸计算时，我们在jquery下无法直接获得。
+因为我们一般使用$(function(){}),等同于$(document).ready(function(){…})的ready状态下运算。
+分析ready和unload
+ready，表示文档结构（DOM结构）已经加载完成（不包含图片等非文字媒体文件）onload, 表示页面包含图片等文件在内的所有元素都加载完成。（可以说：ready">
+<meta property="og:updated_time" content="2017-05-12T02:31:24.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Eugenia的博客">
+<meta name="twitter:title" content="ready和onload事件的区别">
+<meta name="twitter:description" content="一般遇到图片的尺寸计算时，我们在jquery下无法直接获得。
+因为我们一般使用$(function(){}),等同于$(document).ready(function(){…})的ready状态下运算。
+分析ready和unload
+ready，表示文档结构（DOM结构）已经加载完成（不包含图片等非文字媒体文件）onload, 表示页面包含图片等文件在内的所有元素都加载完成。（可以说：ready">
   
   
     <link rel="icon" href="/favicon.png">
@@ -57,57 +70,79 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/05/03/Js闭包/" class="archive-article-date">
-  <time datetime="2017-05-03T03:41:49.000Z" itemprop="datePublished">5月 3</time>
+        <section id="main"><article id="post-ready和onload事件的区别" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/12/ready和onload事件的区别/" class="article-date">
+  <time datetime="2017-05-12T02:27:32.000Z" itemprop="datePublished">2017-05-12</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/03/Js闭包/">Js闭包</a>
+    <h1 class="article-title" itemprop="name">
+      ready和onload事件的区别
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/04/20/Js创建对象及继承/" class="archive-article-date">
-  <time datetime="2017-04-20T02:29:06.000Z" itemprop="datePublished">4月 20</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/20/Js创建对象及继承/">Js创建对象及继承</a>
-    </h1>
-  
+        <p>一般遇到图片的尺寸计算时，我们在jquery下无法直接获得。</p>
+<p>因为我们一般使用$(function(){}),等同于$(document).ready(function(){…})的ready状态下运算。</p>
+<p>分析ready和unload</p>
+<ol><li>ready，表示文档结构（DOM结构）已经加载完成（不包含图片等非文字媒体文件）</li><li>onload, 表示页面包含图片等文件在内的所有元素都加载完成。（可以说：ready在onload前加载）</li><br></ol>
 
-    </header>
+<p>所以要计算图片大小要放在onload里面加载。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/05/12/ready和onload事件的区别/" data-id="cj2l845nm000bi0ltezknsmez" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jQuery/">jQuery</a></li></ul>
+
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/05/04/BFC块级格式化上下文/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">BFC块级格式化上下文</div>
+    </a>
+  
+</nav>
+
+  
 </article>
+
   
-  
-    </div></section>
+  <section id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="post-ready和onload事件的区别" data-title="ready和onload事件的区别" data-url="http://yoursite.com/2017/05/12/ready和onload事件的区别/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'eugeniawu'};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+      </script>
+    <!-- 多说公共JS代码 end -->
+  </section>
   
 
 </section>
