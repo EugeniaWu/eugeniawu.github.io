@@ -59,6 +59,98 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-通过github创建hexo网站" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/02/15/通过github创建hexo网站/" class="article-date">
+  <time datetime="2017-02-15T07:35:34.000Z" itemprop="datePublished">2017-02-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/15/通过github创建hexo网站/">通过hexo建立blog,并发布在github</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>注册github</p>
+<p>创建仓库<br>settings -&gt; Repositories</p>
+<p>输入名称 EugeniaWu.github.io   //注意格式，要与github用户相同</p>
+<p>本地本地新建项目路径</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ mkdir myGitHub</div></pre></td></tr></table></figure>
+<p>按照命令初始化，</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">echo</span> <span class="string">"# eugeniawu.github.io"</span> &gt;&gt; README.md</div><div class="line">$ git init</div><div class="line">$ git add README.md</div><div class="line">$ git commit -m <span class="string">"first commit"</span></div><div class="line">$ git remote add origin git@github.com:EugeniaWu/eugeniawu.github.io.git</div><div class="line">$ git push -u origin master</div></pre></td></tr></table></figure>
+<p>提示</p>
+<p>Permanently added the RSA host key for IP address ‘192.30.253.112’ to the list of known hosts.<br>Permission denied (publickey).</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo ssh-keygen -t rsa -C <span class="string">"xxx@xxx.com"</span>  //注册github邮箱</div></pre></td></tr></table></figure>
+<p>Enter passphrase (empty for no passphrase):    //输入密码</p>
+<p>Enter same passphrase again:             //输入密码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pbcopy &lt; ~/.ssh/id_rsa.pub  //通过命令复制生成的ssh key</div></pre></td></tr></table></figure>
+<p>通过settings -&gt; SSH and GPG keys</p>
+<p>new SSH key</p>
+<p>粘贴ssh key</p>
+<p>再次提交</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git push origin master</div></pre></td></tr></table></figure>
+<h3 id="浏览器输入https-eugeniawu-github-io-即可打开web"><a href="#浏览器输入https-eugeniawu-github-io-即可打开web" class="headerlink" title="浏览器输入https://eugeniawu.github.io/  即可打开web"></a>浏览器输入<a href="https://eugeniawu.github.io/" target="_blank" rel="external">https://eugeniawu.github.io/</a>  即可打开web</h3><h1 id="使用hexo创建blog"><a href="#使用hexo创建blog" class="headerlink" title="使用hexo创建blog"></a>使用hexo创建blog</h1><p>Hexo 是一个简单地、轻量地、基于Node的一个静态博客框架，可以方便的生成静态网页托管在github和Heroku上.</p>
+<p>在myGithub目录下，执行命令安装Hexo</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo npm install -g hexo</div></pre></td></tr></table></figure>
+<p>初始化hexo<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo init</div></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ hexo generate <span class="comment">#生成静态页面至public目录</span></div><div class="line"></div><div class="line">$ hexo server <span class="comment">#开启预览访问端口（默认端口4000，'ctrl + c'关闭server）</span></div></pre></td></tr></table></figure>
+<p>配置发布github<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ vim _config.yml</div></pre></td></tr></table></figure></p>
+<p>//修改配置文件需要重新执行命令查看,下面是简写形式</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo s</div></pre></td></tr></table></figure>
+<p>增加评论功能</p>
+<p>将最底部的deploy配置修改：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">deploy:</div><div class="line">	<span class="built_in">type</span>: git</div><div class="line">	<span class="comment">#repo: https://github.com/EugeniaWu/eugeniawu.github.io.git</span></div><div class="line">	repo: https://[github账户名]:[密码]@github.com/EugeniaWu/eugeniawu.github.io.git</div><div class="line">	branch: master</div></pre></td></tr></table></figure>
+<p>然后执行命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install hexo-deployer-git --save</div></pre></td></tr></table></figure>
+<p>通过命令，将静态网页提交到github<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ hexo clean</div><div class="line">$ hexo generate</div><div class="line">$ hexo deploy <span class="comment">#部署到GitHub</span></div></pre></td></tr></table></figure></p>
+<h3 id="浏览器输入https-eugeniawu-github-io-即可打开web-1"><a href="#浏览器输入https-eugeniawu-github-io-即可打开web-1" class="headerlink" title="浏览器输入https://eugeniawu.github.io/  即可打开web"></a>浏览器输入<a href="https://eugeniawu.github.io/" target="_blank" rel="external">https://eugeniawu.github.io/</a>  即可打开web</h3><h2 id="一些常用命令："><a href="#一些常用命令：" class="headerlink" title="一些常用命令："></a>一些常用命令：</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"postName"</span> <span class="comment">#新建文章</span></div><div class="line">$ hexo new page <span class="string">"pageName"</span> <span class="comment">#新建页面</span></div></pre></td></tr></table></figure>
+<p>文章内容采用markdown格式。</p>
+<p>注意：<br>[remote rejected] HEAD -&gt; master (cannot lock ref ‘refs/heads/master’</p>
+<p>解决<br>fetch 改变的是 remotes 里面相应分支的 commit id。<br>git fetch 并没更改本地仓库的代码,git pull会更改,拉下来并merge</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git fetch</div></pre></td></tr></table></figure>
+<p>//使用duoshuo做评论<br>　注册多说帐号 <a href="http://duoshuo.com/" target="_blank" rel="external">http://duoshuo.com/</a> </p>
+<p>主题是landscape</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ vim themes/landscape/layout/_partial/article.ejs</div></pre></td></tr></table></figure>
+<p>找到下面代码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;% <span class="keyword">if</span> (!index &amp;&amp; post.comments &amp;&amp; config.disqus_shortname)&#123; %&gt;</div><div class="line"> &lt;section id=<span class="string">"comments"</span>&gt;</div><div class="line">   &lt;div id=<span class="string">"disqus_thread"</span>&gt;</div><div class="line">     &lt;noscript&gt;Please <span class="built_in">enable</span> JavaScript to view the &lt;a href=<span class="string">"//disqus.com/?ref_noscript"</span>&gt;comments powered by Disqus.&lt;/a&gt;&lt;/noscript&gt;</div><div class="line">   &lt;/div&gt;</div><div class="line"> &lt;/section&gt;</div><div class="line"> &lt;% &#125; %&gt;</div></pre></td></tr></table></figure>
+<p>替换成</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">&lt;% <span class="keyword">if</span> (!index &amp;&amp; post.comments &amp;&amp; config.duoshuo_shortname)&#123; %&gt;</div><div class="line">  &lt;section id=<span class="string">"comments"</span>&gt;</div><div class="line">    &lt;!-- 多说评论框 start --&gt;</div><div class="line">    &lt;div class=<span class="string">"ds-thread"</span> data-thread-key=<span class="string">"&lt;%= post.layout %&gt;-&lt;%= post.slug %&gt;"</span> data-title=<span class="string">"&lt;%= post.title %&gt;"</span> data-url=<span class="string">"&lt;%= page.permalink %&gt;"</span>&gt;&lt;/div&gt;</div><div class="line">    &lt;!-- 多说评论框 end --&gt;</div><div class="line">    &lt;!-- 多说公共JS代码 start (一个网页只需插入一次) --&gt;</div><div class="line">    &lt;script <span class="built_in">type</span>=<span class="string">"text/javascript"</span>&gt;</div><div class="line">    var duoshuoQuery = &#123;short_name:<span class="string">'&lt;%= config.duoshuo_shortname %&gt;'</span>&#125;;</div><div class="line">      (<span class="function"><span class="title">function</span></span>() &#123;</div><div class="line">        var ds = document.createElement(<span class="string">'script'</span>);</div><div class="line">        ds.type = <span class="string">'text/javascript'</span>;ds.async = <span class="literal">true</span>;</div><div class="line">        ds.src = (document.location.protocol == <span class="string">'https:'</span> ? <span class="string">'https:'</span> : <span class="string">'http:'</span>) + <span class="string">'//static.duoshuo.com/embed.js'</span>;</div><div class="line">        ds.charset = <span class="string">'UTF-8'</span>;</div><div class="line">        (document.getElementsByTagName(<span class="string">'head'</span>)[0] </div><div class="line">         || document.getElementsByTagName(<span class="string">'body'</span>)[0]).appendChild(ds);</div><div class="line">      &#125;)();</div><div class="line">      &lt;/script&gt;</div><div class="line">    &lt;!-- 多说公共JS代码 end --&gt;</div><div class="line">  &lt;/section&gt;</div><div class="line">  &lt;% &#125; %&gt;</div></pre></td></tr></table></figure>
+<p>到根目录myGithub</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ vim _config.yml</div></pre></td></tr></table></figure>
+<p>在文件底部新增</p>
+<p><code>duoshuo_shortname:  eugeniawu //刚刚注册duoshuo的域名</code> </p>
+<p>注意<br>Port 4000 has been used. Try other port instead.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ lsof -i:4000</div><div class="line">$ <span class="built_in">kill</span> -9 [PID]  //PID填入值</div></pre></td></tr></table></figure>
+<p></p><br><p></p><br><p></p> 
+
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/02/15/通过github创建hexo网站/" data-id="cj32wcx2z000q1wltu6mhld07" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技术/">技术</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+  
+
+  
     <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/02/14/hello-world/" class="article-date">
@@ -94,7 +186,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/02/14/hello-world/" data-id="cj2l89pw7000kiyltybo2owoq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/02/14/hello-world/" data-id="cj32wcx2e000e1wltnzo12eae" class="article-share-link">Share</a>
       
       
     </footer>
@@ -153,6 +245,10 @@
       <ul>
         
           <li>
+            <a href="/2017/05/24/通过搭建DNS服务器访问内网服务器/">通过搭建DNS服务器访问内网服务器</a>
+          </li>
+        
+          <li>
             <a href="/2017/05/12/ready和onload事件的区别/">ready和onload事件的区别</a>
           </li>
         
@@ -166,10 +262,6 @@
         
           <li>
             <a href="/2017/05/03/css3-动画/">css3 动画</a>
-          </li>
-        
-          <li>
-            <a href="/2017/04/20/Js创建对象及继承/">Js创建对象及继承</a>
           </li>
         
       </ul>
