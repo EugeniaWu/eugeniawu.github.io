@@ -59,6 +59,117 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Node-js＋gulp-js构建前端自动化环境" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/02/16/Node-js＋gulp-js构建前端自动化环境/" class="article-date">
+  <time datetime="2017-02-16T07:49:19.000Z" itemprop="datePublished">2017-02-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/16/Node-js＋gulp-js构建前端自动化环境/">Node.js＋gulp.js构建前端自动化环境</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="本地环境下，静态网站的构建自动化"><a href="#本地环境下，静态网站的构建自动化" class="headerlink" title="本地环境下，静态网站的构建自动化"></a>本地环境下，静态网站的构建自动化</h2><p>vim编辑器工作以来使用了两年多，早已熟悉每一个命令。工作之余，打算在本地制作一个线下网站环境。所以我想到了在本地构建关系，并通过gulp打包输出。</p>
+<p>目录设计如下：<br><img src="http://wx1.sinaimg.cn/mw690/a181e589gy1fcsfzy5m55j20hw0dodgj.jpg" alt="关系图"></p>
+<h2 id="整个过程是：安装nodejs，全局安装gulp，项目安装gulp以及gulp插件，配置gulpfile-js，运行任务"><a href="#整个过程是：安装nodejs，全局安装gulp，项目安装gulp以及gulp插件，配置gulpfile-js，运行任务" class="headerlink" title="整个过程是：安装nodejs，全局安装gulp，项目安装gulp以及gulp插件，配置gulpfile.js，运行任务"></a>整个过程是：安装nodejs，全局安装gulp，项目安装gulp以及gulp插件，配置gulpfile.js，运行任务</h2><p>全局安装gulp插件 </p>
+<pre><code class="bash">$ npm install gulp -g
+</code></pre>
+<p>本地路径</p>
+<p>创建模块，package.json 文件是必不可少的。我们可以使用 NPM 生成 package.json 文件，生成的文件包含了基本的结果.</p>
+<pre><code class="bash">$ npm init
+</code></pre>
+<p>本地安装gulp插件</p>
+<pre><code class="bash">$ npm install gulp gulp-less gulp-uglify imagemin-pngcrush
+ gulp-imagemin gulp-html-extend —save-dev     //对less的输出，js的压缩，图片压缩，html的处理
+</code></pre>
+<p>全局安装gulp是为了执行gulp任务，本地安装gulp则是为了调用gulp插件功能</p>
+<pre><code class="bash">$ vim gulp.js
+</code></pre>
+<p>修改gulp.js文件</p>
+<pre><code>var gulp = require(&apos;gulp&apos;),
+less = require(&apos;gulp-less&apos;),
+uglify = require(&apos;gulp-uglify&apos;),              
+imagemin = require(&apos;gulp-imagemin&apos;),//图片压缩
+pngcrush = require(&apos;imagemin-pngcrush&apos;),
+htmlHelper = require(&apos;gulp-html-extend&apos;);    //主要处理公用部分layout
+
+var dir = &apos;../event/&apos;;   //定义目录
+
+
+gulp.task(&apos;testLess&apos;, function() {
+    gulp.src(dir+&apos;web/*/*/*.less&apos;)
+    .pipe(less())
+    .pipe(gulp.dest(dir+&apos;output&apos;));
+    console.log(&apos;done css&apos;);
+})
+
+gulp.task(&apos;minify-js&apos;, function() {
+    gulp.src(dir+&apos;web/*/*/*.js&apos;)
+  //.pipe(uglify())   //开发环境下不压缩js
+    .pipe(gulp.dest(dir+&apos;output&apos;));
+})
+
+gulp.task(&apos;img&apos;, function() {
+      return gulp.src(dir+&apos;web/*/images/*&apos;)
+    .pipe(imagemin({
+    progressive: true,
+    svgoPlugins: [{removeViewBox: false}],
+      use: [pngcrush()]
+    }))
+ .pipe(gulp.dest(dir+&apos;output&apos;));
+});
+
+gulp.task(&apos;testHtml&apos;, function() {
+    gulp.src(dir+&apos;web/*/*.html&apos;).pipe(htmlHelper({
+    annotations:false,verbose:false
+    })).pipe(gulp.dest(dir+&apos;output&apos;))
+})
+
+
+gulp.task(&apos;default&apos;, function() {
+     gulp.run(&apos;testLess&apos;,&apos;minify-js&apos;,&apos;testHtml&apos;,&apos;img&apos;);
+     gulp.watch(dir+&apos;web/*/*/*.less&apos;,[&apos;testLess&apos;])
+     gulp.watch(dir+&apos;web/*/*/*.js&apos;,[&apos;minify-js&apos;])
+     gulp.watch(dir+&apos;web/*/*.html&apos;,[&apos;testHtml&apos;])
+     gulp.watch(dir+&apos;web/*/images/*&apos;,[&apos;img&apos;])
+})
+</code></pre><p>使用gulp命令运行打包程序</p>
+<pre><code class="bash">$ gulp
+</code></pre>
+<p>layout.html   使用了bootstrap框架</p>
+<p><img src="http://wx3.sinaimg.cn/mw690/a181e589gy1fcsg4ok7rij20on0qn79s.jpg" alt="layout"></p>
+<p>页面引用(注意使用output路径,按需引入资源)</p>
+<p><img src="http://wx1.sinaimg.cn/mw690/a181e589gy1fcsg7b9v8pj20jr09kdgq.jpg" alt=""></p>
+<p><a href="https://github.com/beattortoise/beattortoise.github.com" target="_blank" rel="external">源码查看</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/02/16/Node-js＋gulp-js构建前端自动化环境/" data-id="cj3pq4nt900095klt8dw27sqy" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技术/">技术</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+  
+
+  
     <article id="post-通过github创建hexo网站" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/02/15/通过github创建hexo网站/" class="article-date">
@@ -138,7 +249,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/02/15/通过github创建hexo网站/" data-id="cj3podufg000lvtlt1pspob8r" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/02/15/通过github创建hexo网站/" data-id="cj3pq4nty000q5kltuet93jft" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技术/">技术</a></li></ul>
@@ -186,7 +297,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/02/14/hello-world/" data-id="cj3poduex0005vtltmf5h7p7f" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/02/14/hello-world/" data-id="cj3pq4ntj000e5klt7uz8n26w" class="article-share-link">Share</a>
       
       
     </footer>
@@ -213,7 +324,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/">jQuery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/生活/">生活</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/h5/">h5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/">jQuery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/生活/">生活</a></li></ul>
     </div>
   </div>
 
@@ -223,7 +334,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/css/" style="font-size: 15px;">css</a> <a href="/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/tags/javascript/" style="font-size: 15px;">javascript</a> <a href="/tags/技术/" style="font-size: 20px;">技术</a> <a href="/tags/生活/" style="font-size: 10px;">生活</a>
+      <a href="/tags/css/" style="font-size: 15px;">css</a> <a href="/tags/h5/" style="font-size: 10px;">h5</a> <a href="/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/tags/javascript/" style="font-size: 15px;">javascript</a> <a href="/tags/技术/" style="font-size: 20px;">技术</a> <a href="/tags/生活/" style="font-size: 10px;">生活</a>
     </div>
   </div>
 
@@ -232,7 +343,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li></ul>
     </div>
   </div>
 
@@ -243,6 +354,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2017/06/09/canvas学习笔记/">canvas学习笔记</a>
+          </li>
         
           <li>
             <a href="/2017/05/24/通过搭建DNS服务器访问内网服务器/">通过搭建DNS服务器访问内网服务器</a>
@@ -258,10 +373,6 @@
         
           <li>
             <a href="/2017/05/03/Js闭包/">Js闭包</a>
-          </li>
-        
-          <li>
-            <a href="/2017/05/03/css3-动画/">css3 动画</a>
           </li>
         
       </ul>
